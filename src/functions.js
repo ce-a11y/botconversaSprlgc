@@ -51,9 +51,9 @@ export function filtraCondominio(nomeBusca, listaCondominios) {
         const tamanhoMax = Math.max(nomeNormalizado.length, nomeBusca.length);
         const similaridade = 1 - distancia / tamanhoMax;
 
-        console.log("distancia:" + distancia);
-        console.log("tamanhoMax:" + tamanhoMax);
-        console.log("similaridade:" + similaridade);
+        //console.log("distancia:" + distancia);
+        //console.log("tamanhoMax:" + tamanhoMax);
+        //console.log("similaridade:" + similaridade);
 
         return {
             id: u.id_condominio_cond,
@@ -118,7 +118,7 @@ export function formatarNomeCondominio(nome) {
 }
 
 export function obterPeriodoDias(idCondominio) {
-    const rawData = fs.readFileSync('./config-condominios.json');
+    const rawData = fs.readFileSync('./src/config-condominios.json');
     const configCondominios = JSON.parse(rawData);
 
     const condominioConfig = configCondominios.find(cond => cond.id === Number(idCondominio));
