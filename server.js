@@ -31,6 +31,12 @@ app.post('/webhook-boleto', async (req, res) => {
 
 });
 
+app.get('/', (req, res) => {
+
+    res.send("Webhook rodadno na porta 3000")
+
+})
+
 app.listen(3000, () => {
     console.log("Webhook rodando na porta 3000")
 })
