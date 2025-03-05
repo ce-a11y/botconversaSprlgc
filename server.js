@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { buscarUnidades } from './src/buscaCPF.js';
 import { buscarBoleto } from './src/buscaBoleto.js';
 import { buscaCondominio } from './src/buscaCondominio.js';
+import { extrairNome } from './src/validaNome.js';
 
 dotenv.config();
 
@@ -25,6 +26,12 @@ app.use((req, res, next) => {
         res.status(500).json({mensagem: "Erro interno"});
     }
     })
+
+app.post('/valida-nome', async (req, res) => {
+    const {nome} = req.body;
+    const resposta = await extrairNome(nome);
+    return res.json(resposta);
+});
 
 app.post('/busca-condominio', async (req, res) => {
     const {nomeCondominio} = req.body;

@@ -1,5 +1,7 @@
 import levenshtein from 'fast-levenshtein';
 import fs from 'fs';
+import axios from 'axios';
+import { configDotenv } from 'dotenv';
 
 export function limparCPF(cpf) {
     return cpf.replace(/\D/g, ""); //deixa so numeros
@@ -123,4 +125,43 @@ export function obterPeriodoDias(idCondominio) {
 
     const condominioConfig = configCondominios.find(cond => cond.id === Number(idCondominio));
     return condominioConfig?.diasFiltro ?? 30; // Retorna diasFiltro se existir, senão 30
+}
+export function formatarNome(nome) {
+    if (!nome) return "Nome inválido"; // Evita erros caso a string esteja vazia ou indefinida
+
+    nome = nome.trim().replace(/[.,]+$/, "");  // Remove pontos no final da string
+    const palavras = nome.split(" ");
+    const primeiroNome = palavras[0];
+    return primeiroNome.charAt(0).toUpperCase() + primeiroNome.slice(1).toLowerCase();
+}
+
+export async function extrairNomeComIA(frase) {
+    try {
+      const OPENAI_API_KEY = process.env.OPENAI_API_KEY;  
+      const response = await axios.post(
+          "https://api.openai.com/v1/chat/completions",
+          {
+              model: "gpt-4-turbo", 
+              messages: [
+                  { role: "system", content: "Você é um assistente que extrai nomes de mensagens enviadas por usuários. Note que algum deles pode querer pregar peças e dizer nomes engraçadinhos. Nesses casos, tente identificar o real nome. Há a possibilidade de colocarem seus nomes no aumentativo, por zoeira. Pegue apenas o primeiro nome. Se o segundo nome tiver menos de três letras, ignore-o. Caso o usuário digite um apelido, retorne o nome mais comum associado a esse apelido." },
+                  { role: "user", content: `Qual o nome na seguinte frase? Responda apenas o nome, sem explicação: "${frase}". Caso não haja nome na frase fornecida, responda apenas "NA"` }
+              ],
+              max_tokens: 10,
+              temperature: 0.3
+          },
+          {
+              headers: {
+                  "Authorization": `Bearer ${OPENAI_API_KEY}`,
+                  "Content-Type": "application/json"
+              }
+          }
+      );
+
+      const nomeExtraido = response.data.choices[0].message.content.trim();
+      return { nome: `${nomeExtraido}` }|| "NA"
+
+  } catch (error) {
+      console.error("Erro na OpenAI:", error);
+      return "Nenhum nome detectado";
+  }
 }

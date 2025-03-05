@@ -63,7 +63,7 @@ export async function buscarBoleto(idCondominio, idUnidade) {
         resposta += `🔗 Link: ${boleto.link_segundavia}\n\n`
     });
 
-    resposta += `Para boletos vencidos a mais de ${periodoDias} dias, entre em contato com um atendente para verificar sua situação.`
+    resposta += `Para boletos vencidos há mais de ${periodoDias} dias, entre em contato com um atendente para verificar sua situação.`
     
     return {mensagem: resposta};
 

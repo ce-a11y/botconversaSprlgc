@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   webhook-server:
-    image: webhook-server:v1.0.2
+    image: webhook-server:v1.0.4
     restart: always
     ports:
       - "3000:3000"
@@ -16,7 +16,7 @@ services:
           - node.role == manager
       labels:
         - traefik.enable=true
-        - traefik.http.routers.webhook-server.rule=Host(`webhook.macedo.business`)
+        - traefik.http.routers.webhook-server.rule=Host(`seu.site.aqui`)
         - traefik.http.routers.webhook-server.entrypoints=websecure
         - traefik.http.routers.webhook-server.priority=1
         - traefik.http.routers.webhook-server.tls.certresolver=letsencryptresolver
