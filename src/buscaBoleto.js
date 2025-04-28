@@ -1,6 +1,7 @@
 import axios from 'axios';
 import dotenv from 'dotenv';
 import { formatarData, formatarDataParaAPI, obterPeriodoDias } from './functions.js';
+import { logger } from './logger.js';
 
 
 const BASE_URL = "https://api.superlogica.net/v2/condor";
@@ -16,6 +17,7 @@ const hoje = new Date();
 export async function buscarBoleto(idCondominio, idUnidade) {
     
     if (!idCondominio || !idUnidade) {
+        logger.warn('ID do condomínio ou ID da unidade não fornecido.');
         return {mensagem: "Erro: informe o ID do condomínio e o ID da unidade."}
     }
 
@@ -26,7 +28,10 @@ export async function buscarBoleto(idCondominio, idUnidade) {
     
     const dtInicio = formatarDataParaAPI(diasAntes);
 
+    logger.info(`Buscando boletos para idCondominio=${idCondominio}, idUnidade=${idUnidade}`);
+
     try {
+    
     const boletoResponse = await axios.get(`${BASE_URL}/cobranca/index`, {
         params: {
             status: "pendentes",
@@ -48,13 +53,15 @@ export async function buscarBoleto(idCondominio, idUnidade) {
     const boletos = boletoResponse.data;
 
     if (!boletos || boletos.length === 0) {
+        logger.warn(`Nenhum boleto pendente encontrado para unidade ${idUnidade}`);
         return {mensagem: "Nenhum boleto pendente encontrado para esta unidade."}
     }
 
     boletos.sort((a, b) => new Date(a.dt_vencimento_recb) - new Date(b.dt_vencimento_recb));
+    logger.info(`Encontrados ${boletos.length} boletos para unidade ${idUnidade}`);
 
     let resposta = boletos.length > 1 ? `✅ Certo! Encontrei ${boletos.length} boletos em aberto. \n\n Aqui estão eles:` : `✅ Certo! Encontrei *um* boleto em aberto:\n\n`
-    console.log(boletos);
+    
 
     boletos.forEach((boleto, index) => {
         resposta += `📌 Boleto ${index + 1}:\n`;
@@ -69,7 +76,7 @@ export async function buscarBoleto(idCondominio, idUnidade) {
 
 }
 catch (error) {
-    console.error("Erro ao buscar unidade.", error);
+    logger.error(`Erro ao buscar boletos para unidade ${idUnidade}: ${error.message}`);
     return { mensagem: "Erro ao buscar unidade. Tente novamente mais tarde."}
 }
 

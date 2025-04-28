@@ -2,6 +2,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 import levenshtein from 'fast-levenshtein';
 import { filtraCondominio, removerAcentos, formatarNomeCondominio } from './functions.js'
+import { logger} from './logger.js';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ async function buscaListaCond() {
 export async function buscaCondominio(nomeCondominio) {
 
     if (!nomeCondominio) {
+        logger.warn("Tentativa de busca de condomínio com string vazia.")
         return {mensagem: "Digite o nome do condomínio!"}
     }
     
@@ -40,16 +42,19 @@ export async function buscaCondominio(nomeCondominio) {
 
 
     if (encontrados === "" || !encontrados || encontrados.length === 0) {
+        logger.error(`Condomínio ${nomeCondominio} não encontrado.`)
         return { mensagem: "Nenhum condomínio encontrado com esse nome"}
     }
 
     if (encontrados.length === 1) {
-        return { mensagem: ` Condomínio encontrado: ${encontrados[0].st_nome_cond}. Confirma essa opção?`,
+        logger.info(`Condomínio ${encontrados[0].nome} encontrado como correspondência de ${nomeCondominio}.`)
+        return { mensagem: ` Condomínio encontrado: ${encontrados[0].cond}. Confirma essa opção?`,
             opcoes: encontrados.map(cond => ({
             id: cond.id,
             nome: formatarNomeCondominio(cond.nome) }))
         }
     }
+    logger.info(`Condomínios ${encontrados.map(u => formatarNomeCondominio(u.nome)).join(', ')} encontrado como correspondência de ${nomeCondominio}.`);
 
     return { mensagem: "🏢 Encontramos mais de um condomínio. Escolha o seu:",
             opcoes: encontrados.map(cond => ({

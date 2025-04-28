@@ -1,0 +1,36 @@
+[2025-04-28T08:10:20.022Z] [INFO] Buscando unidades para o Condomínio ID: 83 e CPF: 46966145220
+[2025-04-28T08:10:20.026Z] [WARN] Não encontrado diretamente, buscando paginadamente todas as unidades.
+[2025-04-28T08:10:23.346Z] [ERROR] Erro ao buscar unidade: pagina is not defined
+[2025-04-28T08:12:25.784Z] [INFO] Buscando unidades para o Condomínio ID: 83 e CPF: 46966145220
+[2025-04-28T08:12:25.787Z] [WARN] Não encontrado diretamente, buscando paginadamente todas as unidades.
+[2025-04-28T08:12:26.819Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 1.
+[2025-04-28T08:12:27.252Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 2.
+[2025-04-28T08:12:27.677Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 3.
+[2025-04-28T08:12:27.944Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 4.
+[2025-04-28T08:12:28.329Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 5.
+[2025-04-28T08:12:28.590Z] [ERROR] Erro ao buscar unidade: pagina is not defined
+[2025-04-28T08:12:57.089Z] [INFO] Buscando unidades para o Condomínio ID: 83 e CPF: 46966145220
+[2025-04-28T08:12:57.092Z] [WARN] Não encontrado diretamente, buscando paginadamente todas as unidades.
+[2025-04-28T08:12:58.164Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 1.
+[2025-04-28T08:12:58.608Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 2.
+[2025-04-28T08:12:59.058Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 3.
+[2025-04-28T08:12:59.498Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 4.
+[2025-04-28T08:12:59.944Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 5.
+[2025-04-28T08:13:00.325Z] [INFO] Final da paginação alcançado na página 6.
+[2025-04-28T08:15:12.137Z] [INFO] Buscando unidades para o Condomínio ID: 83 e CPF: 46966145220
+[2025-04-28T08:15:12.140Z] [WARN] Não encontrado diretamente, buscando paginadamente todas as unidades.
+[2025-04-28T08:15:13.216Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 1.
+[2025-04-28T08:15:13.664Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 2.
+[2025-04-28T08:15:14.114Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 3.
+[2025-04-28T08:15:14.577Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 4.
+[2025-04-28T08:15:14.907Z] [INFO] Buscando unidades do Condomínio de ID 83 vinculadas ao CPF 46966145220 na página 5.
+[2025-04-28T08:15:15.193Z] [INFO] Final da paginação alcançado na página 5.
+[2025-04-28T08:15:15.194Z] [INFO] Encontradas 8 unidades para o Condomínio ID: 83 e CPF: 46966145220.
+[2025-04-28T08:15:37.871Z] [INFO] Buscando unidades para o Condomínio ID: 83 e CPF: 46966145220
+[2025-04-28T08:15:38.538Z] [INFO] Encontradas 8 unidades para o Condomínio ID: 83 e CPF: 46966145220.
+[2025-04-28T08:15:38.536Z] [INFO] Encontradas 8 unidades diretamente pela busca.
+[2025-04-28T08:23:33.419Z] [INFO] Condomínios ,, encontrado como correspondência de undefined.
+[2025-04-28T08:24:11.715Z] [INFO] Condomínio Nova Canaã encontrado como correspondência de undefined.
+[2025-04-28T08:24:47.727Z] [INFO] Condomínio CONDOMINIO NOVA CANAA encontrado como correspondência de Nova Canaã.
+[2025-04-28T08:25:40.531Z] [INFO] Condomínios ,, encontrado como correspondência de undefined.
+[2025-04-28T08:29:43.114Z] [INFO] Condomínios Office Premium, Smart Office, Easy Office encontrado como correspondência de Office.

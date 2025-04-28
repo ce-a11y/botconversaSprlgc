@@ -2,6 +2,7 @@ import levenshtein from 'fast-levenshtein';
 import fs from 'fs';
 import axios from 'axios';
 import { configDotenv } from 'dotenv';
+import { logger } from './logger.js';
 
 export function limparCPF(cpf) {
     return cpf.replace(/\D/g, ""); //deixa so numeros
@@ -136,6 +137,7 @@ export function formatarNome(nome) {
 }
 
 export async function extrairNomeComIA(frase) {
+
     try {
       const OPENAI_API_KEY = process.env.OPENAI_API_KEY;  
       const response = await axios.post(
@@ -158,7 +160,10 @@ export async function extrairNomeComIA(frase) {
       );
 
       const nomeExtraido = response.data.choices[0].message.content.trim();
-      return { nome: `${nomeExtraido}` }|| "NA"
+      
+      logger.info(`Encontrado o nome "${nomeExtraido} na mensagem ${frase}`);
+      
+      return { nome: `${nomeExtraido}` } || "NA"
 
   } catch (error) {
       console.error("Erro na OpenAI:", error);
