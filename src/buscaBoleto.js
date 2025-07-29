@@ -28,7 +28,7 @@ export async function buscarBoleto(idCondominio, idUnidade) {
     
     const dtInicio = formatarDataParaAPI(diasAntes);
 
-    logger.info(`Buscando boletos para idCondominio=${idCondominio}, idUnidade=${idUnidade}`);
+    logger.info(`Buscando boletos para idCondominio: ${idCondominio} e idUnidade: ${idUnidade}`);
 
     try {
     
@@ -54,11 +54,11 @@ export async function buscarBoleto(idCondominio, idUnidade) {
 
     if (!boletos || boletos.length === 0) {
         logger.warn(`Nenhum boleto pendente encontrado para unidade ${idUnidade}`);
-        return {mensagem: "Nenhum boleto pendente encontrado para esta unidade."}
+        return {mensagem: "Nenhum boleto com menos de 30 dias de atraso encontrado para esta unidade. \n\n Para boletos vencidos há mais de 30 dias, entre em contato com um atendente para verificar sua situação."}
     }
 
     boletos.sort((a, b) => new Date(a.dt_vencimento_recb) - new Date(b.dt_vencimento_recb));
-    logger.info(`Encontrados ${boletos.length} boletos para unidade ${idUnidade}`);
+    logger.info(`Encontrados ${boletos.length} boletos para unidade ID ${idUnidade}`);
 
     let resposta = boletos.length > 1 ? `✅ Certo! Encontrei ${boletos.length} boletos em aberto. \n\n Aqui estão eles:` : `✅ Certo! Encontrei *um* boleto em aberto:\n\n`
     
