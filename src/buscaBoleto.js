@@ -53,7 +53,7 @@ export async function buscarBoleto(idCondominio, idUnidade) {
     const boletos = boletoResponse.data;
 
     if (!boletos || boletos.length === 0) {
-        logger.warn(`Nenhum boleto pendente encontrado para unidade ${idUnidade}`);
+        logger.warn(`Nenhum boleto pendente encontrado para unidade: ${idUnidade}`);
         return {mensagem: "Nenhum boleto com menos de 30 dias de atraso encontrado para esta unidade. \n\n Para boletos vencidos há mais de 30 dias, entre em contato com um atendente para verificar sua situação."}
     }
 
